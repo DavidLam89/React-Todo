@@ -8,7 +8,7 @@ class App extends React.Component {
     this.state = {
       todos: [
       ],
-      task: ''
+      task: '',
     };
   }
 
@@ -23,11 +23,24 @@ class App extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   };
 
+  taskClicked = id => {
+    let todos = this.state.todos;
+    todos = todos.map(element => {
+      if (element.id === id) {
+      element.completed = !element.completed;
+      return element;
+      }
+      else return element;
+    });
+    this.setState({ todos });
+  };
+
   render() {
     return (
       <div>
         <TodoList
           todos={this.state.todos}
+          taskClicked = {this.taskClicked}
         />
         <TodoForm
           value={this.state.task}

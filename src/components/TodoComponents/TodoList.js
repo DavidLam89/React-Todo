@@ -7,6 +7,7 @@ const TodoList = props => {
       {props.todos.map(element => (
         <Todo
           task={element}
+          taskClicked={props.taskClicked}
         />
       ))}
     </div>

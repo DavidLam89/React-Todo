@@ -2,7 +2,7 @@ import React from 'react';
 
 const Todo = props => {
   return (
-    <div>
+    <div style={props.task.completed ? {textDecoration: 'line-through'} : null} onClick={() => props.taskClicked(props.task.id)}>
       {props.task.task}
     </div>
   );

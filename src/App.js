@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import './components/TodoComponents/Todo.css';
 
 class App extends React.Component {
   constructor() {
@@ -35,17 +36,28 @@ class App extends React.Component {
     this.setState({ todos });
   };
 
+  clearCompleted = e => {
+    e.preventDefault();
+    let todos = this.state.todos;
+    todos = todos.filter(element => !element.completed
+    );
+    console.log(todos);
+    this.setState({ todos });
+    console.log(this.state.todos);
+  };
+
   render() {
     return (
-      <div>
-        <TodoList
-          todos={this.state.todos}
-          taskClicked = {this.taskClicked}
-        />
+      <div className='container'>
         <TodoForm
           value={this.state.task}
           onChangeTodo={this.onChangeTodo}
           addTodo={this.addTodo}
+          clearCompleted={this.clearCompleted}
+        />
+        <TodoList
+          todos={this.state.todos}
+          taskClicked = {this.taskClicked}
         />
       </div>
     );
